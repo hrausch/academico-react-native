@@ -1,0 +1,10 @@
+services:
+  js-environment:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/code
+    ports:
+      - "3000:3000" # Caso use um servidor Node.js
+    tty: true # Permite manter o container rodando interativamente
