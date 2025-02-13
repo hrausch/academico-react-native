@@ -1,5 +1,6 @@
 services:
   js-environment:
+    container_name: ambiente-js
     build:
       context: .
       dockerfile: Dockerfile

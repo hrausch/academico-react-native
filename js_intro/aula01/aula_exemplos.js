@@ -30,7 +30,7 @@ function verificarParImpar(){
  */
 function imprimirDataAtual(){
     let dataAtual = new Date();
-    console.log(dataAtual;
+    console.log(dataAtual);
     console.log("Data atual: " + dataAtual.toLocaleDateString());
 }
 /**
