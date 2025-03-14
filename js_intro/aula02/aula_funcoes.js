@@ -13,6 +13,7 @@ function saudacao(nome) {
 const subtrair = (a, b) => a - b;
 console.log(subtrair(10, 4)); 
 
+
 const quadrado = num => num * num;
 console.log(quadrado(5)); 
   
@@ -21,5 +22,5 @@ console.log(quadrado(5));
   console.log(multiplica(4, 5));
 
 
-  const saudacao = nome => `Olá, ${nome}!`;
-  console.log(saudacao("Maria"));
+  const saudacao2 = nome => `Olá, ${nome}!`;
+  console.log(saudacao2("Maria"));
