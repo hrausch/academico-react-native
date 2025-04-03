@@ -1,0 +1,36 @@
+# Node modules
+node_modules
+**/node_modules
+
+# Logs
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Editor configs
+.vscode
+.idea
+*.swp
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Arquivos de build
+dist
+build
+
+# Arquivos do Docker e Makefile
+Dockerfile
+Makefile
+
+# Outros
+.env
+.env.*
+.expo
+.expo-shared
