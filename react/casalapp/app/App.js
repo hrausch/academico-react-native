@@ -2,23 +2,15 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-import { PrimeiroComponente, Saudacao, SaudacaoCompleta } from './components/PrimeiroComponente';
-import Home from './components/Layout'; // Home com composição completa
+
+import SignUp from './screens/user/Signup';
 
 export default function App() {
   return (
     <ScrollView style={styles.scroll}>
       <View style={styles.container}>
 
-        <Text style={styles.title}>Exemplo de Componente Simples</Text>
-        <PrimeiroComponente />
-
-        <Text style={styles.title}>Componente com Props</Text>
-        <Saudacao nome="João" />
-        <SaudacaoCompleta nome="Maria" idade={30} />
-
-        <Text style={styles.title}>Composição de Componentes (Home)</Text>
-        <Home />
+        <SignUp />
 
         <StatusBar style="auto" />
       </View>

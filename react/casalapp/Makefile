@@ -12,7 +12,13 @@ build-docker:
 	docker build -t $(IMAGE_NAME) .
 
 start-docker:
-	docker run -it --rm -p 8081:8081 -v "$$(pwd)/$(APP_DIR)":/app $(IMAGE_NAME)
+	docker run -it --rm \
+	  -p 19006:19006 \
+	  -p 19000:19000 \
+	  -p 8081:8081 \
+	  -v "$$(pwd)/$(APP_DIR)":/app \
+	  $(IMAGE_NAME) \
+	
 
 
 
