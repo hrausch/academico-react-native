@@ -12,7 +12,18 @@ build-docker:
 	docker build -t $(IMAGE_NAME) .
 
 start-docker:
-	docker run -it --rm -p 8081:8081 -v "$$(pwd)/$(APP_DIR)":/app $(IMAGE_NAME)
+	docker run -it --rm \
+		-v "$$(pwd)/$(APP_DIR)":/app \
+		-w /app \
+		-p 19000:19000 \
+		-p 19001:19001 \
+		-p 19002:19002 \
+		node:18-alpine sh -c "\
+			apk add --no-cache bash git && \
+			npm install && \
+			npx expo install && \
+			npx expo start --tunnel"
+	
 
 
 
