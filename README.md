@@ -16,3 +16,7 @@ Branches
 ## aula-07 - react/casalapp
 
 - Integração com Firebase (cadastro de usuario)
+
+## aula-08 - react/casalapp
+- Navegação entre telas
+- Integração com Firebase (login)
