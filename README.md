@@ -24,6 +24,7 @@ Branches
 - Ajustando navegação: (Login para house (Exercício); Login para Signup; Signup para house)
 
 ## aula-10 - react/casalapp
+- Refatoração HouseSelection.js
 - Ajustando navegação: (Login para house; Login para home; Login para Signup; Signup para house; House para Home)
 - Tela Home: Componentes "estáticos"
 
