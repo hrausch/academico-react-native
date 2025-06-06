@@ -4,7 +4,9 @@ import globalStyles from '../../styles/GlobalStyles';
 
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../services/firebase';
+import { auth, db } from '../../services/firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUp = () => {
 
@@ -13,6 +15,8 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  // 'objeto' que lida com a navegação
+  const navigation = useNavigation();
 
 
   const handleSubmit = () => {
@@ -23,10 +27,49 @@ const SignUp = () => {
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
+      .then(async userCredential => {
+        // userCredential é um objeto que contém informações sobre o usuário autenticado
+        // e o token de autenticação
+        // user é o objeto que representa o usuário autenticado
         const user = userCredential.user;
-        Alert.alert('Sucesso', `Usuário criado: ${user.email}`);
-        // redirecionar para tela de criar ou entrar em uma Casa
+
+        try {
+
+          /**
+           * Aqui salvamos os dados do usuário no Firestore
+           * doc(db, 'users', user.uid) cria uma referência ao documento do usuário
+           * setDoc() salva os dados no Firestore
+           * O objeto passado contém os dados que queremos salvar
+           * fullName, email e createdAt são os campos que estamos salvando
+           * createdAt é a data de criação do usuário, que estamos definindo como a data atual
+           */
+          await setDoc(doc(db, 'users', user.uid), {
+            fullName,
+            email,
+            createdAt: new Date(),
+          });
+
+          Alert.alert('Sucesso', `Usuário criado: ${user.email}`);
+
+          
+          /**
+           * Aqui estamos redefinindo a navegação para a tela de seleção de casa
+           * navigation.reset() redefine a pilha de navegação
+           * index: 0 define que a primeira tela da pilha será a de seleção de casa
+           * routes: [{ name: 'HouseSelection' }] define que a primeira tela será a de seleção de casa
+           * Isso é útil para evitar que o usuário volte para a tela de cadastro após criar a conta
+           *  */ 
+        
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'HouseSelection'}],
+          });
+
+        } catch (firestoreError) {
+          console.error("Erro ao salvar no Firestore:", firestoreError);
+          Alert.alert('Usuário criado, mas houve erro ao salvar os dados.', firestoreError.message);
+        }
+
       })
       .catch(error => {
         console.error(error);
